@@ -607,3 +607,20 @@ SELECT
 FROM employees e1
 ORDER BY hire_date;
 
+-- This query counts the number of employees working in each coffee shop and includes the city in which the coffee shop is located. 
+
+### SQL Query
+SELECT 
+    s.coffeeshop_name, 
+    l.city, 
+    COUNT(e.employee_id) AS employee_count
+FROM 
+    shops s
+INNER JOIN 
+    employees e ON s.coffeeshop_id = e.coffeeshop_id
+INNER JOIN 
+    locations l ON s.city_id = l.city_id
+GROUP BY 
+    s.coffeeshop_name, l.city
+ORDER BY 
+    employee_count DESC;
